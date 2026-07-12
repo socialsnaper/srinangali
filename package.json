@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "cross-env DATABASE_URL=\"postgresql://srinangali_user:Srinangali%402024@localhost:5432/srinangali_db\" next dev",
-    "build": "prisma generate && prisma db push && next build",
-    "start": "next start",
+    "build": "prisma generate && prisma db push && next build && cp -r public .next/standalone/ && cp -r .next/static .next/standalone/.next/",
+    "start": "HOSTNAME=0.0.0.0 node .next/standalone/server.js",
     "lint": "next lint",
     "db:setup": "powershell -ExecutionPolicy Bypass -File db-setup.ps1",
     "db:push": "cross-env DATABASE_URL=\"postgresql://srinangali_user:Srinangali%402024@localhost:5432/srinangali_db\" prisma db push",
