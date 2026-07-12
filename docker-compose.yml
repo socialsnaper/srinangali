@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: srinangali_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: srinangali_db
+      POSTGRES_USER: srinangali_user
+      POSTGRES_PASSWORD: Srinangali@2024
+    ports:
+      - "5432:5432"
+    volumes:
+      - srinangali_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U srinangali_user -d srinangali_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  srinangali_pgdata:
+    driver: local

@@ -1,0 +1,50 @@
+{
+  "name": "srinangali-overseas",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env DATABASE_URL=\"postgresql://srinangali_user:Srinangali%402024@localhost:5432/srinangali_db\" next dev",
+    "build": "cross-env DATABASE_URL=\"postgresql://srinangali_user:Srinangali%402024@localhost:5432/srinangali_db\" prisma generate && next build",
+    "start": "next start",
+    "lint": "next lint",
+    "db:setup": "powershell -ExecutionPolicy Bypass -File db-setup.ps1",
+    "db:push": "cross-env DATABASE_URL=\"postgresql://srinangali_user:Srinangali%402024@localhost:5432/srinangali_db\" prisma db push",
+    "db:generate": "prisma generate",
+    "db:seed": "cross-env DATABASE_URL=\"postgresql://srinangali_user:Srinangali%402024@localhost:5432/srinangali_db\" tsx prisma/seed.ts",
+    "db:studio": "cross-env DATABASE_URL=\"postgresql://srinangali_user:Srinangali%402024@localhost:5432/srinangali_db\" prisma studio",
+    "db:reset": "cross-env DATABASE_URL=\"postgresql://srinangali_user:Srinangali%402024@localhost:5432/srinangali_db\" prisma db push --force-reset && npm run db:seed"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.9.0",
+    "@prisma/client": "^5.16.0",
+    "bcryptjs": "^2.4.3",
+    "clsx": "^2.1.1",
+    "date-fns": "^3.6.0",
+    "jose": "^6.2.3",
+    "jsonwebtoken": "^9.0.2",
+    "lucide-react": "^0.407.0",
+    "next": "^15.3.4",
+    "react": "^18.3.0",
+    "react-dom": "^18.3.0",
+    "react-hook-form": "^7.52.1",
+    "react-hot-toast": "^2.4.1",
+    "sharp": "^0.33.4",
+    "tailwind-merge": "^2.4.0",
+    "zod": "^3.23.8",
+    "zustand": "^4.5.4"
+  },
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/node": "^20.14.10",
+    "@types/react": "^18.3.3",
+    "@types/react-dom": "^18.3.0",
+    "autoprefixer": "^10.4.19",
+    "cross-env": "^10.1.0",
+    "postcss": "^8.4.39",
+    "prisma": "^5.16.0",
+    "tailwindcss": "^3.4.6",
+    "tsx": "^4.16.2",
+    "typescript": "^5.5.3"
+  }
+}
