@@ -49,7 +49,7 @@ export default function OrderDetailPage({
     } finally {
       setLoading(false);
     }
-  }, [params.id]);
+  }, [id]);
 
   useEffect(() => {
     fetchOrder();
