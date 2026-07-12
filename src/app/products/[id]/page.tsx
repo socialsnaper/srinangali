@@ -1,6 +1,6 @@
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
-import Image from 'next/image';
+import { ProductImage } from '@/components/ui/ProductImage';
 import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
 import { Navbar } from '@/components/layout/Navbar';
@@ -79,17 +79,13 @@ export default async function ProductDetailPage({
             <div className="grid grid-cols-1 md:grid-cols-2 gap-0">
               {/* Image */}
               <div className="relative aspect-square bg-gray-50">
-                <Image
+                <ProductImage
                   src={getProductImageUrl(product.image)}
                   alt={product.name}
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
                   priority
-                  onError={(e) => {
-                    (e.target as HTMLImageElement).src =
-                      '/images/product-placeholder.svg';
-                  }}
                 />
                 {discount > 0 && (
                   <div className="absolute top-4 left-4 bg-saffron text-white px-3 py-1 rounded-full text-sm font-bold">
@@ -187,15 +183,11 @@ export default async function ProductDetailPage({
                     className="product-card p-4 group"
                   >
                     <div className="relative aspect-square rounded-xl overflow-hidden bg-gray-50 mb-3">
-                      <Image
+                      <ProductImage
                         src={getProductImageUrl(p.image)}
                         alt={p.name}
                         fill
                         className="object-cover group-hover:scale-105 transition-transform duration-300"
-                        onError={(e) => {
-                          (e.target as HTMLImageElement).src =
-                            '/images/product-placeholder.svg';
-                        }}
                       />
                     </div>
                     <p className="font-medium text-sm text-gray-800 group-hover:text-saffron transition-colors line-clamp-2">
