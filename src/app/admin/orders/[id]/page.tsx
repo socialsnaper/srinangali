@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { use, useEffect, useState, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft, Package, User, MapPin, CreditCard } from 'lucide-react';
@@ -27,8 +27,9 @@ const ORDER_STATUSES = [
 export default function OrderDetailPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = use(params);
   const router = useRouter();
   const [order, setOrder] = useState<Order | null>(null);
   const [loading, setLoading] = useState(true);
@@ -37,7 +38,7 @@ export default function OrderDetailPage({
 
   const fetchOrder = useCallback(async () => {
     try {
-      const res = await fetch(`/api/orders/${params.id}`);
+      const res = await fetch(`/api/orders/${id}`);
       const data = await res.json();
       if (data.success) {
         setOrder(data.data);

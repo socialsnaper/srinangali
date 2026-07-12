@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
+import { use, useEffect, useState, useCallback } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
@@ -36,8 +36,9 @@ const CATEGORIES = [
 export default function EditProductPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = use(params);
   const router = useRouter();
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
@@ -50,7 +51,7 @@ export default function EditProductPage({
 
   const fetchProduct = useCallback(async () => {
     try {
-      const res = await fetch(`/api/products/${params.id}`);
+      const res = await fetch(`/api/products/${id}`);
       const data = await res.json();
       if (data.success) {
         setProduct(data.data);
@@ -75,7 +76,7 @@ export default function EditProductPage({
     } finally {
       setLoading(false);
     }
-  }, [params.id, reset, router]);
+  }, [id, reset, router]);
 
   useEffect(() => {
     fetchProduct();
@@ -84,7 +85,7 @@ export default function EditProductPage({
   const onSubmit = async (data: ProductForm) => {
     setSaving(true);
     try {
-      const res = await fetch(`/api/products/${params.id}`, {
+      const res = await fetch(`/api/products/${id}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ ...data, image: imageUrl || null }),
