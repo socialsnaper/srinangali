@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="400" viewBox="0 0 400 400">
+  <rect width="400" height="400" fill="#FFF8EE"/>
+  <circle cx="200" cy="200" r="120" fill="#F5EDD8"/>
+  <text x="200" y="180" text-anchor="middle" font-size="80" fill="#C84B11">🌾</text>
+  <text x="200" y="250" text-anchor="middle" font-family="sans-serif" font-size="16" fill="#9A7B5A">Product Image</text>
+  <text x="200" y="275" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#C09C72">Sri Nangali Overseas</text>
+</svg>
