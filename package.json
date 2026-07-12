@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "cross-env DATABASE_URL=\"postgresql://srinangali_user:Srinangali%402024@localhost:5432/srinangali_db\" next dev",
-    "build": "cross-env DATABASE_URL=\"postgresql://srinangali_user:Srinangali%402024@localhost:5432/srinangali_db\" prisma generate && next build",
+    "build": "prisma generate && prisma db push && next build",
     "start": "next start",
     "lint": "next lint",
     "db:setup": "powershell -ExecutionPolicy Bypass -File db-setup.ps1",
