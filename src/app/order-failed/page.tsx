@@ -1,5 +1,6 @@
 'use client';
 
+import { Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { XCircle } from 'lucide-react';
@@ -7,7 +8,7 @@ import { Navbar } from '@/components/layout/Navbar';
 import { Footer } from '@/components/layout/Footer';
 import { Button } from '@/components/ui/Button';
 
-export default function OrderFailedPage() {
+function OrderFailedContent() {
   const searchParams = useSearchParams();
   const reason = searchParams.get('reason') || 'Payment was not completed';
   const orderNumber = searchParams.get('order');
@@ -67,5 +68,13 @@ export default function OrderFailedPage() {
       </main>
       <Footer />
     </>
+  );
+}
+
+export default function OrderFailedPage() {
+  return (
+    <Suspense fallback={null}>
+      <OrderFailedContent />
+    </Suspense>
   );
 }
